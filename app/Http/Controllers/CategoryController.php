@@ -27,10 +27,15 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:100',
             'description' => 'nullable|max:255',
-            'image' => 'nullable|image|mimes:png,jpg,jpeg,webp'
         ]);
-        $filename = $request->hasFile('image') ? time() . '.' . $request->image->extension() : null;
-        $filename != null ? $request->image->storeAs('public/categories', $filename): null;
+        $filename = null;
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'nullable|image|mimes:png,jpg,jpeg,webp'
+            ]);
+            $filename = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/categories', $filename);
+        }
         $data = $request->all();
         $data['image'] = $filename;
         Category::create($data);
@@ -64,9 +69,9 @@ class CategoryController extends Controller
             $request->image->storeAs('public/categories', $imagePath);
         }
         $data = $request->all();
-        $product = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $data['image'] = $imagePath;
-        $product->update($data);
+        $category->update($data);
         return redirect()->route('category.index')->with('success', 'Category updated successfully');
     }
 

@@ -54,14 +54,21 @@
                                         <tr>
 
                                             <th>Name</th>
-
+                                            <th>Photo</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
                                         @foreach ($categories as $category)
                                             <tr>
 
-                                                <td>{{ $category->name }}
+                                                <td>{{ $category->name }}</td>
+                                                <td>
+                                                    @if ($category->image)
+                                                    <img src="{{ Storage::url('categories/'.$category->image) }}" alt=""
+                                                            alt="" width="100px" class="img-thumbnail">
+                                                    @else
+                                                        <span class="badge badge-danger">No Image</span>
+                                                    @endif
                                                 </td>
 
                                                 <td>{{ $category->created_at }}</td>
@@ -74,10 +81,10 @@
                                                         </a>
 
                                                         <a href="#" type="button"
-                                                                class="btn btn-sm btn-danger btn-icon confirm-delete"
-                                                                id="delete-data" data-id="{{ $category->id }}">
-                                                                <i class="fas fa-times"></i> Delete
-                                                            </a>
+                                                            class="btn btn-sm btn-danger btn-icon confirm-delete"
+                                                            id="delete-data" data-id="{{ $category->id }}">
+                                                            <i class="fas fa-times"></i> Delete
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>

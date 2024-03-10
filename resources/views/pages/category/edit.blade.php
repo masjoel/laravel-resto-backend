@@ -22,7 +22,7 @@
             <div class="section-body">
                 <h2 class="section-title">Category</h2>
                 <div class="card">
-                    <form action="{{ route('category.update', $category) }}" method="POST">
+                    <form action="{{ route('category.update', $category) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
