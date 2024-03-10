@@ -64,8 +64,8 @@
     <script src="{{ asset('library/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script>
-        // let BASE_URL = "https://{{ $_SERVER['HTTP_HOST'] }}";
-        let BASE_URL = "{{ url('/') }}";
+        let BASE_URL = "https://{{ $_SERVER['HTTP_HOST'] }}";
+        // let BASE_URL = "{{ url('/') }}";
         function showAlertOnSubmit(params, modal, table, reload, reloadBlank) {
             if (params.status == 'success') {
                 setTimeout(function() {
