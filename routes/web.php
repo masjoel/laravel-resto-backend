@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('home', [DashboardController::class, 'index'])->name('home');
     Route::resource('user', UserController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
     Route::resource('order', OrderController::class);
 });
 
