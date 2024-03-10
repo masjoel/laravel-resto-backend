@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a href="{{ route('product.index') }}" class="nav-link {{ Request::is('product') ? 'active' : '' }}"><i class="fas fa-gift"></i><span>Products</span></a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('category.index') }}" class="nav-link {{ Request::is('category') ? 'active' : '' }}"><i class="fas fa-gift"></i><span>Categories</span></a>
+            </li>
         </ul>
     </aside>
 </div>

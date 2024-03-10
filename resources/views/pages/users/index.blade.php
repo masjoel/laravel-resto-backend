@@ -79,22 +79,16 @@
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('user.edit', $user->id) }}'
-                                                            class="btn btn-sm btn-info btn-icon">
+                                                            class="btn btn-sm btn-info btn-icon mr-1">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
 
-                                                        <form action="{{ route('user.destroy', $user->id) }}"
-                                                            method="POST" class="ml-2">
-                                                            <input type="hidden" name="_method" value="DELETE" />
-                                                            <input type="hidden" name="_token"
-                                                                value="{{ csrf_token() }}" />
-                                                            <a href="#" type="button"
-                                                                class="btn btn-sm btn-danger btn-icon confirm-delete"
-                                                                id="delete-data" data-id="{{ $user->id }}">
-                                                                <i class="fas fa-times"></i> Delete
-                                                            </a>
-                                                        </form>
+                                                        <a href="#" type="button"
+                                                            class="btn btn-sm btn-danger btn-icon confirm-delete"
+                                                            id="delete-data" data-id="{{ $user->id }}">
+                                                            <i class="fas fa-times"></i> Delete
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>

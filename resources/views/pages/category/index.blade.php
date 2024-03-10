@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
+@section('title', 'Categories')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,14 +11,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Products</h1>
+                <h1>Categories</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('product.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('category.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ route('product.index') }}">Products</a></div>
-                    <div class="breadcrumb-item">All Products</div>
+                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('category.index') }}">Categories</a></div>
+                    <div class="breadcrumb-item">All Category</div>
                 </div>
             </div>
             <div class="section-body">
@@ -27,29 +27,17 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">Products</h2>
-                <p class="section-lead">
-                    You can manage all Products, such as editing, deleting and more.
-                </p>
+
 
 
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
-                            {{-- <div class="card-header">
-                                <h4>All Products</h4>
-                            </div> --}}
+
                             <div class="card-body">
-                                {{-- <div class="float-left">
-                                    <select class="form-control selectric">
-                                        <option>Action For Selected</option>
-                                        <option>Move to Draft</option>
-                                        <option>Move to Pending</option>
-                                        <option>Delete Pemanently</option>
-                                    </select>
-                                </div> --}}
+
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('product.index') }}">
+                                    <form method="GET" action="{{ route('category.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
@@ -66,41 +54,20 @@
                                         <tr>
 
                                             <th>Name</th>
-                                            <th>Category</th>
-                                            <th>Price</th>
-                                            <th>Photo</th>
-                                            <th>Status</th>
-                                            <th>Created at</th>
-                                            <th class="text-center">Action</th>
+
+                                            <th>Created At</th>
+                                            <th>Action</th>
                                         </tr>
-                                        @foreach ($products as $product)
+                                        @foreach ($categories as $category)
                                             <tr>
 
-                                                <td>{{ $product->name }}
+                                                <td>{{ $category->name }}
                                                 </td>
-                                                <td>
-                                                    {{ $product->category->name }}
-                                                </td>
-                                                <td>
-                                                    {{ number_format($product->price) }}
-                                                </td>
-                                                <td>
-                                                    @if ($product->image)
-                                                    <img src="{{ asset('storage/products/'.$product->image) }}" alt=""
-                                                    width="100px" class="img-thumbnail">
-                                                    @else
-                                                    <span class="badge badge-danger">No Image</span>
-                                                    
-                                                    @endif
-                                                    
-                                                </td>
-                                                <td>
-                                                    {{ $product->status == 1 ? 'Active' : 'Inactive' }}
-                                                </td>
-                                                <td>{{ $product->created_at->diffForHumans() }}</td>
+
+                                                <td>{{ $category->created_at }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('product.edit', $product->id) }}'
+                                                        <a href='{{ route('category.edit', $category->id) }}'
                                                             class="btn btn-sm btn-info btn-icon mr-1">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
@@ -108,7 +75,7 @@
 
                                                         <a href="#" type="button"
                                                                 class="btn btn-sm btn-danger btn-icon confirm-delete"
-                                                                id="delete-data" data-id="{{ $product->id }}">
+                                                                id="delete-data" data-id="{{ $category->id }}">
                                                                 <i class="fas fa-times"></i> Delete
                                                             </a>
                                                     </div>
@@ -120,7 +87,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $products->withQueryString()->links() }}
+                                    {{ $categories->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
@@ -142,8 +109,8 @@
         $(document).on("click", "a#delete-data", function(e) {
             e.preventDefault();
             let id = $(this).data('id');
-            showDeletePopup(BASE_URL + '/product/' + id, '{{ csrf_token() }}', '', '',
-                BASE_URL + '/product');
+            showDeletePopup(BASE_URL + '/category/' + id, '{{ csrf_token() }}', '', '',
+                BASE_URL + '/category');
         });
     </script>
 @endpush

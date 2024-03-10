@@ -93,6 +93,10 @@ class ProductController extends Controller
             Storage::disk('public')->delete('products/' . $product->image);
         }
         $product->delete();
-        return redirect()->route('product.index')->with('success', 'Product successfully deleted');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Succesfully Deleted Data'
+        ]);
+        // return redirect()->route('product.index')->with('success', 'Product successfully deleted');
     }
 }
