@@ -64,8 +64,7 @@
                                                 <td>{{ $category->name }}</td>
                                                 <td>
                                                     @if ($category->image)
-                                                    <img src="{{ Storage::url('categories/'.$category->image) }}" alt=""
-                                                            alt="" width="100px" class="img-thumbnail">
+                                                    <img src="{{ Storage::url('categories/'.$category->image) }}" alt="" width="100px" class="img-thumbnail">
                                                     @else
                                                         <span class="badge badge-danger">No Image</span>
                                                     @endif
