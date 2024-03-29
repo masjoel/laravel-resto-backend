@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,7 +13,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::paginate(10);
+        return view('pages.order.index', compact('orders'));
     }
 
     /**
@@ -36,7 +38,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $orders = OrderItem::where('order_id',$order->id)->get();
+        return view('pages.order.detail', compact('orders'));
     }
 
     /**

@@ -13,7 +13,6 @@ class DiscountSeeder extends Seeder
      */
     public function run(): void
     {
-        //manual input
         Discount::create([
             'name' => 'Welcome WCB',
             'description' => 'Member baru WCB',

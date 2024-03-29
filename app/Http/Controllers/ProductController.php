@@ -97,6 +97,5 @@ class ProductController extends Controller
             'status' => 'success',
             'message' => 'Succesfully Deleted Data'
         ]);
-        // return redirect()->route('product.index')->with('success', 'Product successfully deleted');
     }
 }

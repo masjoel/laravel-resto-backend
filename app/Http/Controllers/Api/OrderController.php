@@ -12,7 +12,6 @@ class OrderController extends Controller
     //save order
     public function saveOrder(Request $request)
     {
-        //validate request
         $request->validate([
             'payment_amount' => 'required',
             'sub_total' => 'required',
@@ -28,7 +27,6 @@ class OrderController extends Controller
             // 'order_items' => 'required'
         ]);
 
-        //create order
         $order = Order::create([
             'payment_amount' => $request->payment_amount,
             'sub_total' => $request->sub_total,
@@ -43,7 +41,6 @@ class OrderController extends Controller
             'transaction_time' => $request->transaction_time
         ]);
 
-        //create order items
         foreach ($request->order_items as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
